@@ -1,5 +1,7 @@
 package cn.pj.cts.model;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -34,6 +36,7 @@ public class UserModel extends BaseModel {
     private String userPhoto;
     /**model共有属性状态*/
     @Column(name = "STATUS")
+    @Generated(GenerationTime.INSERT)
     private String status;
     /**model共有属性控制字*/
     @Column(name = "CONTROL_WORD")
