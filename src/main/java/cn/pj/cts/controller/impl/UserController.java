@@ -24,16 +24,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/addUser")
+    @PostMapping("/addUser.action")
     public Response addUser(@RequestBody UserModel userModel){
-        return userService.addUser(userModel);
+        userService.addUser(userModel);
+        return new Response();
 
     }
 
-    @PostMapping(path = "updateUser")
-    public void updateUser(@RequestBody UserModel userModel){
-
-
+    @PostMapping("/updateUser")
+    public Response updateUser(@RequestBody UserModel userModel){
+        userService.updateUser(userModel);
+        return new Response();
     }
     @DeleteMapping(path="deleteUser")
     public void deleteUser(@RequestBody UserModel userModel){

@@ -1,10 +1,10 @@
 package cn.pj.cts.model;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -16,6 +16,7 @@ import java.util.Date;
 @Entity
 @Table(name = "TCS_USER_INFO")
 @GenericGenerator(name = "jpa-uuid",strategy = "uuid")
+@DynamicInsert(true)
 public class UserModel extends BaseModel {
     /**用户id*/
     @Id
@@ -36,11 +37,13 @@ public class UserModel extends BaseModel {
     private String userPhoto;
     /**model共有属性状态*/
     @Column(name = "STATUS")
-    @Generated(GenerationTime.INSERT)
     private String status;
     /**model共有属性控制字*/
     @Column(name = "CONTROL_WORD")
     private String controlWord;
+    /**model共有属性备注*/
+    @Column(name = "REMARK")
+    private String remark;
     /**model共有属性创建者*/
     @Column(name = "CREATOR")
     private String creator;
@@ -57,6 +60,9 @@ public class UserModel extends BaseModel {
     @Column(name = "REC_VER")
     private Integer recVer;
 
+    public UserModel() {
+        super();
+    }
 
     public String getUserId() {
         return userId;
@@ -98,32 +104,34 @@ public class UserModel extends BaseModel {
         this.userPhoto = userPhoto;
     }
 
-     
     public String getStatus() {
         return status;
     }
 
-     
     public void setStatus(String status) {
         this.status = status;
     }
 
-     
     public String getControlWord() {
         return controlWord;
     }
 
-     
     public void setControlWord(String controlWord) {
         this.controlWord = controlWord;
     }
 
-     
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public String getCreator() {
         return creator;
     }
 
-     
     public void setCreator(String creator) {
         this.creator = creator;
     }
@@ -140,11 +148,9 @@ public class UserModel extends BaseModel {
         return modifier;
     }
 
-     
     public void setModifier(String modifier) {
         this.modifier = modifier;
     }
-
 
     public Date getModifierDateTime() {
         return modifierDateTime;

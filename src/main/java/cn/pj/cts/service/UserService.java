@@ -2,6 +2,9 @@ package cn.pj.cts.service;
 
 import cn.pj.cts.common.Response;
 import cn.pj.cts.model.UserModel;
+import org.springframework.data.domain.Example;
+
+import java.util.List;
 
 /**
  * @Author:Pengjie WU
@@ -11,6 +14,22 @@ import cn.pj.cts.model.UserModel;
  **/
 public interface UserService {
 
-    Response addUser(UserModel userModel);
+    UserModel addUser(UserModel userModel);
+
+    List<UserModel> addBacthUsers(List<UserModel> userModels);
+
+    int updateUser(UserModel userModel);
+
+    int updateBacthUsers(List<UserModel> userModels);
+
+    void deleteUserById(String userId);
+
+    void deleteBacthUsers(List<UserModel> userModels);
+
+    boolean existsById(String userId);
+
+    UserModel findUserById(String userId);
+
+    List<UserModel> findUsersByExample(Example userModel);
 
 }
