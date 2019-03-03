@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(value="user")
 @SessionAttributes("userModel")
 @Slf4j
+@CrossOrigin
 public class UserController {
 
     @Autowired
