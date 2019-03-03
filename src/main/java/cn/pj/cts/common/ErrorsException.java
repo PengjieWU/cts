@@ -14,6 +14,7 @@ public class ErrorsException extends  RuntimeException {
 
     private final ErrorCodeAndMsg response;
 
+
     public ErrorsException(ErrorCodeAndMsg response) {
         this.response = response;
     }

@@ -1,40 +1,39 @@
 package cn.pj.cts.model;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @Author:Pengjie WU
  * @Description:TODO
- * @Date: Create in 22:59 2019/1/17
+ * @Date: Create in 15:28 2019/3/3
  * @Modify By:
  **/
 @Entity
-@Table(name = "TCS_USER_INFO")
+@Table(name = "TCS_PROJECT_TASK_INFO")
 @GenericGenerator(name = "jpa-uuid",strategy = "uuid")
 @DynamicInsert(true)
-public class UserModel extends BaseModel {
-    /**用户id*/
+public class ProjectTaskInfoModel extends BaseModel {
+
     @Id
     @GeneratedValue(generator = "jpa-uuid")
-    @Column(name = "USER_ID",length = 32)
-    private String userId;
-    /**用户登录邮箱*/
-    @Column(name = "USER_LOGIN_ACCOUNT")
-    private String userLoginAccount;
-    /**用户名称*/
-    @Column(name = "USER_NAME")
-    private String userName;
-    /**用户密码*/
-    @Column(name = "USER_PASSWORD")
-    private String userPassword;
-    /**用户头像*/
-    @Column(name = "USER_PHOTO")
-    private String userPhoto;
+    @Column(name = "PROJECT_TASK_SCHEDULE_ID",length = 32)
+    private String projectTaskScheduleId;
+    @Column(name = "PROJECT_ID")
+    private String projectId;
+    @Column(name = "PROJECT_RESOURCE_ID")
+    private String projectResourceId;
+    @Column(name = "PROJECT_TASK_RESOURCE_NAME")
+    private String projectTaskResourceName;
+    @Column(name = "PROJECT_TASK_RESOURCE_TYPE")
+    private String projectTaskResourceType;
+    @Column(name = "PROJECT_TASK_SCHEDULE_TYPE_CODE")
+    private String projectTaskScheduleTypeCode;
+    @Column(name = "PROJECT_TASK_SCHEDULE_VALUE")
+    private String projectTaskScheduleValue;
     /**model共有属性状态*/
     @Column(name = "STATUS")
     private String status;
@@ -60,48 +59,64 @@ public class UserModel extends BaseModel {
     @Column(name = "REC_VER")
     private Integer recVer;
 
-    public UserModel() {
+    public ProjectTaskInfoModel() {
         super();
     }
 
-    public String getUserId() {
-        return userId;
+    public String getProjectTaskScheduleId() {
+        return projectTaskScheduleId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setProjectTaskScheduleId(String projectTaskScheduleId) {
+        this.projectTaskScheduleId = projectTaskScheduleId;
     }
 
-    public String getUserLoginAccount() {
-        return userLoginAccount;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setUserLoginAccount(String userLoginAccount) {
-        this.userLoginAccount = userLoginAccount;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getProjectResourceId() {
+        return projectResourceId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setProjectResourceId(String projectResourceId) {
+        this.projectResourceId = projectResourceId;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getProjectTaskResourceName() {
+        return projectTaskResourceName;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setProjectTaskResourceName(String projectTaskResourceName) {
+        this.projectTaskResourceName = projectTaskResourceName;
     }
 
-    public String getUserPhoto() {
-        return userPhoto;
+    public String getProjectTaskResourceType() {
+        return projectTaskResourceType;
     }
 
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
+    public void setProjectTaskResourceType(String projectTaskResourceType) {
+        this.projectTaskResourceType = projectTaskResourceType;
+    }
+
+    public String getProjectTaskScheduleTypeCode() {
+        return projectTaskScheduleTypeCode;
+    }
+
+    public void setProjectTaskScheduleTypeCode(String projectTaskScheduleTypeCode) {
+        this.projectTaskScheduleTypeCode = projectTaskScheduleTypeCode;
+    }
+
+    public String getProjectTaskScheduleValue() {
+        return projectTaskScheduleValue;
+    }
+
+    public void setProjectTaskScheduleValue(String projectTaskScheduleValue) {
+        this.projectTaskScheduleValue = projectTaskScheduleValue;
     }
 
     public String getStatus() {
@@ -166,24 +181,5 @@ public class UserModel extends BaseModel {
 
     public void setRecVer(Integer recVer) {
         this.recVer = recVer;
-    }
-
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "userId='" + userId + '\'' +
-                ", userLoginAccount='" + userLoginAccount + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
-                ", status='" + status + '\'' +
-                ", controlWord='" + controlWord + '\'' +
-                ", remark='" + remark + '\'' +
-                ", creator='" + creator + '\'' +
-                ", creatorDateTime=" + creatorDateTime +
-                ", modifier='" + modifier + '\'' +
-                ", modifierDateTime=" + modifierDateTime +
-                ", recVer=" + recVer +
-                '}';
     }
 }

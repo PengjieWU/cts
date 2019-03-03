@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- Apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- Apple devices fullscreen -->
+		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<title>TEAMCOLLABORATIONSYSTEM - Project</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<!-- jQuery UI -->
+		<link rel="stylesheet" href="css/plugins/jquery-ui/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="css/plugins/jquery-ui/smoothness/jquery.ui.theme.css">
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="css/style.css">
+		<!-- Color CSS -->
+		<link rel="stylesheet" href="css/themes.css">
+
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+
+		<!-- Nice Scroll -->
+		<script src="js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+		<!-- imagesLoaded -->
+		<script src="js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+		<!-- jQuery UI -->
+		<script src="js/plugins/jquery-ui/jquery.ui.core.min.js"></script>
+		<script src="js/plugins/jquery-ui/jquery.ui.widget.min.js"></script>
+		<script src="js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
+		<script src="js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
+		<script src="js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
+		<!-- slimScroll -->
+		<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Bootbox -->
+		<script src="js/plugins/bootbox/jquery.bootbox.js"></script>
+		<!-- Bootbox -->
+		<script src="js/plugins/form/jquery.form.min.js"></script>
+		<!-- Validation -->
+		<script src="js/plugins/validation/jquery.validate.min.js"></script>
+		<script src="js/plugins/validation/additional-methods.min.js"></script>
+
+		<!-- Theme framework -->
+		<script src="js/eakroko.min.js"></script>
+		<!-- Theme scripts -->
+		<script src="js/application.min.js"></script>
+		<!-- Just for demonstration -->
+		<script src="js/demonstration.min.js"></script>
+		<script src="js/project/createproject.js"></script>
+		<!--[if lte IE 9]>
+		<script src="js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+		<![endif]-->
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="img/favicon.ico" />
+		<!-- Apple devices Homescreen icon -->
+		<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+	</head>
+
+	<body>
+		<div id="navigation">
+			<div class="container-fluid">
+				<a href="#" id="brand">TEAM</a>
+				<!--<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
+				<i class="fa fa-bars"></i>
+			</a>-->
+				<div class="user">
+					<div class="dropdown">
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe
+							<img src="img/demo/user-avatar.jpg" alt="">
+						</a>
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<a href="more-userprofile.html">修改个人资料</a>
+							</li>
+							<li>
+								<a href="#">退出登录</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid" id="content">
+			<div id="main">
+				<div class="container-fluid">
+					<div class="page-header">
+						<div class="pull-left">
+							<h1>创建项目</h1>
+						</div>
+						<div class="pull-right">
+							<ul class="minitiles">
+								<li class='grey'>
+									<a href="#">
+										<i class="fa fa-cogs"></i>
+									</a>
+								</li>
+								<li class='lightgrey'>
+									<a href="#">
+										<i class="fa fa-globe"></i>
+									</a>
+								</li>
+							</ul>
+							<ul class="stats">
+								<li class='lightred'>
+									<i class="fa fa-calendar"></i>
+									<div class="details">
+										<span class="big">February 22, 2013</span>
+										<span>Wednesday, 13:56</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="breadcrumbs">
+						<ul>
+							<li>
+								<a href="more-login.html">主页</a>
+								<i class="fa fa-angle-right"></i>
+							</li>
+							<li>
+								<a href="components-messages.html">创建项目</a>
+							</li>
+						</ul>
+						<div class="close-bread">
+							<a href="#">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="box">
+								<div class="box-title">
+									<h3>
+									<i class="fa fa-edit"></i>项目基本信息</h3>
+								</div>
+								<div class="box-content">
+									<form id="projectCreateForm" name ="projectCreateForm" method="POST" class='form-horizontal form-validate'>
+										<div class="form-group">
+											<label for="textfield" class="control-label col-sm-2">项目名称</label>
+											<div class="col-sm-10">
+												<input type="text" name="projectName" id="projectName" class="form-control" data-rule-required="true">
+												<span class="help-block">为你的项目起一个比较perfect的名称</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="textfield" class="control-label col-sm-2">项目所属公司</label>
+											<div class="col-sm-10">
+												<input type="text" name="projectCompany" id="projectCompany" class="form-control">
+												<span class="help-block">输入项目所属的公司名称，当你没有组织时，此项为非必填项</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="textarea" class="control-label col-sm-2">项目简介</label>
+											<div class="col-sm-10">
+												<textarea name="projectDescription" id="projectDescription" class="form-control" data-rule-required="true"></textarea>
+												<span class="help-block">在这里你可以对该项目进行大概的描述，以便团队成员或者当你选择项目公开的时候其他人对其有个大概的了解</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="textfield" class="control-label col-sm-2">项目联系人</label>
+											<div class="col-sm-10">
+												<input type="text" name="projectContactName" id="projectContactName" class="form-control" data-rule-required="true">
+												<span class="help-block">输入项目的联系人，最好输入真实姓名，方便我们联系</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="textfield" class="control-label col-sm-2">项目联系电话</label>
+											<div class="col-sm-10">
+												<input type="text" name="projectContactPhone" id="projectContactPhone" class="form-control" data-rule-required="true" data-rule-number="true">
+												<span class="help-block">输入项目的联系电话，最好输入真实电话，方便我们联系</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="textfield" class="control-label col-sm-2" >项目联系邮箱</label>
+											<div class="col-sm-10">
+												<input type="text" name="projectContactEmail" id="projectContactEmail" class="form-control" data-rule-required="true" data-rule-email="true">
+												<span class="help-block">输入项目的联系邮箱，最好输入真实邮箱，方便我们联系</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="select" class="control-label col-sm-2">项目性质</label>
+											<div class="col-sm-10">
+												<select name="projectSecrecy" id="projectSecrecy" class='form-control' data-rule-required="true">
+													<option value="私有">私有，仅你和你的团队成员可见</option>
+													<option value="公开">公开，任何拥有TeamCollaborationSystem账号的用户都可以在产品市场看到该产品</option>
+												</select>
+												<span class="help-block">选择项目的性质，私有或者公开</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="select" class="control-label col-sm-2">项目持续周期</label>
+											<div class="col-sm-10">
+												<select name="projectDurationTime" id="projectDurationTime" class='form-control' data-rule-required="true">
+													<option value="低于一个月">低于一个月</option>
+													<option value="半年以内">半年以内</option>
+													<option value="一年以内">一年以内</option>
+													<option value="超过一年">超过一年</option>
+												</select>
+												<span class="help-block">选择项目的预计周期</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="select" class="control-label col-sm-2">项目状态</label>
+											<div class="col-sm-10">
+												<select name="status" id="status" class='form-control' data-rule-required="true">
+													<option value="Pending">Pending</option>
+													<option value="Active">Active</option>
+													<option value="Cancel">Cancel</option>
+												</select>
+												<span class="help-block">选择项目的初始状态</span>
+											</div>
+										</div>
+										<div class="form-actions">
+											<input type="button" class="btn btn-primary" onclick="addProject()" value = "创建项目"></button>
+											<input type="button" class="btn btn-primary" value = "取消" onclick="location.href='homepage.html'" ></button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

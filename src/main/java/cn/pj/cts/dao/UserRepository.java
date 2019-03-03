@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author:Pengjie WU
@@ -34,5 +33,7 @@ public interface UserRepository extends JpaRepository<UserModel,String> {
             " tui.REC_VER =  tui.REC_VER + 1 " +
             " where tui.USER_ID = :#{#userModel.userId}",nativeQuery = true)
     int update(@Param("userModel") UserModel userModel);
+
+    List<UserModel> findByUserLoginAccount(String userLoginAccount);
 
 }

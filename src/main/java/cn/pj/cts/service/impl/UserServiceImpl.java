@@ -7,13 +7,16 @@ import cn.pj.cts.dao.UserRepository;
 import cn.pj.cts.model.UserModel;
 import cn.pj.cts.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author:Pengjie WU
@@ -79,5 +82,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> findUsersByExample(Example userModel) {
         return userRepository.findAll(userModel);
+    }
+
+    @Override
+    public UserModel findByUserLoginAccount(UserModel userModel) {
+        List<UserModel> userModels = userRepository.findByUserLoginAccount(userModel.getUserLoginAccount());
+        Response response = new Response();
+        if(CollectionUtils.isEmpty(userModels)){
+            throw new ErrorsException(ErrorCodeAndMsg.Login_Condition_Error);
+        }else{
+            UserModel model = userModels.get(0);
+            if(!model.getUserPassword().equals(userModel.getUserPassword())){
+                throw new ErrorsException(ErrorCodeAndMsg.Login_Condition_Error);
+            }else{
+                return model;
+            }
+        }
+    }
+
+    @Override
+    public UserModel findLoginUserModel(HttpSession session) {
+        return Optional.ofNullable((UserModel)session.getAttribute("userModel")).orElse(new UserModel());
     }
 }

@@ -1,40 +1,29 @@
 package cn.pj.cts.model;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @Author:Pengjie WU
  * @Description:TODO
- * @Date: Create in 22:59 2019/1/17
+ * @Date: Create in 15:23 2019/3/3
  * @Modify By:
  **/
 @Entity
-@Table(name = "TCS_USER_INFO")
+@Table(name = "TCS_PROJECT_RESOURCE_INFO")
 @GenericGenerator(name = "jpa-uuid",strategy = "uuid")
 @DynamicInsert(true)
-public class UserModel extends BaseModel {
-    /**用户id*/
+public class ProjectResourceInfoModel extends BaseModel {
     @Id
     @GeneratedValue(generator = "jpa-uuid")
-    @Column(name = "USER_ID",length = 32)
-    private String userId;
-    /**用户登录邮箱*/
-    @Column(name = "USER_LOGIN_ACCOUNT")
-    private String userLoginAccount;
-    /**用户名称*/
-    @Column(name = "USER_NAME")
-    private String userName;
-    /**用户密码*/
-    @Column(name = "USER_PASSWORD")
-    private String userPassword;
-    /**用户头像*/
-    @Column(name = "USER_PHOTO")
-    private String userPhoto;
+    @Column(name = "PROJECT_RESOURCE_ID",length = 32)
+    private String projectResourceId;
+    @Column(name = "PROJECT_RESOURCE_VALUE")
+    private String projectResourceValue;
     /**model共有属性状态*/
     @Column(name = "STATUS")
     private String status;
@@ -60,48 +49,24 @@ public class UserModel extends BaseModel {
     @Column(name = "REC_VER")
     private Integer recVer;
 
-    public UserModel() {
+    public ProjectResourceInfoModel() {
         super();
     }
 
-    public String getUserId() {
-        return userId;
+    public String getProjectResourceId() {
+        return projectResourceId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setProjectResourceId(String projectResourceId) {
+        this.projectResourceId = projectResourceId;
     }
 
-    public String getUserLoginAccount() {
-        return userLoginAccount;
+    public String getProjectResourceValue() {
+        return projectResourceValue;
     }
 
-    public void setUserLoginAccount(String userLoginAccount) {
-        this.userLoginAccount = userLoginAccount;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getUserPhoto() {
-        return userPhoto;
-    }
-
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
+    public void setProjectResourceValue(String projectResourceValue) {
+        this.projectResourceValue = projectResourceValue;
     }
 
     public String getStatus() {
@@ -166,24 +131,5 @@ public class UserModel extends BaseModel {
 
     public void setRecVer(Integer recVer) {
         this.recVer = recVer;
-    }
-
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "userId='" + userId + '\'' +
-                ", userLoginAccount='" + userLoginAccount + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
-                ", status='" + status + '\'' +
-                ", controlWord='" + controlWord + '\'' +
-                ", remark='" + remark + '\'' +
-                ", creator='" + creator + '\'' +
-                ", creatorDateTime=" + creatorDateTime +
-                ", modifier='" + modifier + '\'' +
-                ", modifierDateTime=" + modifierDateTime +
-                ", recVer=" + recVer +
-                '}';
     }
 }

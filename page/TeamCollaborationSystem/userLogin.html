@@ -34,7 +34,7 @@
 	<!-- Bootstrap -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/eakroko.js"></script>
-
+	<script src="js/user/userLogin.js"></script>
 	<!--[if lte IE 9]>
 		<script src="js/plugins/placeholder/jquery.placeholder.min.js"></script>
 		<script>
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 				<div class="submit">
-					<input type="submit" id = 'btnLogin' name = 'btnLogin' value="登录" class='btn btn-primary'>
+					<input type="button" id = "btnLogin" name = "btnLogin" onclick= "findByUserLoginAccount()" value="登录" class='btn btn-primary'>
 				</div>
 			</form>
 			<div class="forget">

@@ -13,6 +13,7 @@ public enum ErrorCodeAndMsg {
     Query_Condition_Missing("-1","查询缺少必要参数"),
     Save_Condition_Missing("-1","保存缺少必要参数"),
     Delete_Condition_Missing("-1","删除缺少必要参数"),
+    Login_Condition_Error("-1","账号或者密码错误"),
     Network_error("-1","网络错误，待会重试"),
     ;
 
@@ -20,10 +21,13 @@ public enum ErrorCodeAndMsg {
     private String code;
     private String msg;
 
+
     ErrorCodeAndMsg(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
+
+
 
     public String getCode() {
         return code;
