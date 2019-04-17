@@ -1,10 +1,9 @@
 package cn.pj.cts.service.impl;
+import cn.pj.cts.common.Response;
+import cn.pj.cts.controller.impl.UserProjectController;
 import cn.pj.cts.dao.ProjectStoryInfoRepository;
 import cn.pj.cts.entity.ProjectStoryInfoEntity;
-import cn.pj.cts.model.ProjectModel;
-import cn.pj.cts.model.ProjectResourceInfoModel;
-import cn.pj.cts.model.ProjectStoryInfoModel;
-import cn.pj.cts.model.ProjectStoryResourceInfoModel;
+import cn.pj.cts.model.*;
 import cn.pj.cts.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -16,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author:Pengjie WU
@@ -37,6 +37,8 @@ public class ProjectStoryInfoServiceImpl implements ProjectStoryInfoService {
     private ProjectResourceInfoService projectResourceInfoService;
     @Autowired
     private ProjectStoryResourceInfoService projectStoryResourceInfoService;
+    @Autowired
+    private UserProjectController userProjectController;
     @Override
     public ProjectStoryInfoModel addProjectStoryInfo(ProjectStoryInfoModel projectStoryInfoModel) {
         return projectStoryInfoRepository.save(projectStoryInfoModel);
@@ -49,7 +51,7 @@ public class ProjectStoryInfoServiceImpl implements ProjectStoryInfoService {
 
     @Override
     public int updateProjectStoryInfo(ProjectStoryInfoModel projectStoryInfoModel) {
-        return 0;
+        return projectStoryInfoRepository.update(projectStoryInfoModel);
     }
 
     @Override
@@ -74,7 +76,8 @@ public class ProjectStoryInfoServiceImpl implements ProjectStoryInfoService {
 
     @Override
     public ProjectStoryInfoModel findProjectStoryInfoById(String projectStoryInfoId) {
-        return null;
+        Optional<ProjectStoryInfoModel> projectStoryInfoModel = projectStoryInfoRepository.findById(projectStoryInfoId);
+        return  projectStoryInfoModel.get();
     }
 
     @Override
@@ -99,8 +102,8 @@ public class ProjectStoryInfoServiceImpl implements ProjectStoryInfoService {
         projectStoryInfoEntity.setStoryMnemonicCode(storyMnemonicCode);
         BeanUtils.copyProperties(projectStoryInfoEntity,projectStoryInfoModel);
         projectStoryInfoModel = this.addProjectStoryInfo(projectStoryInfoModel);
-        if(!StringUtils.isEmpty(projectStoryInfoEntity.getStoryAttachementFiles())){
-                MultipartFile file = projectStoryInfoEntity.getStoryAttachementFiles();
+        if(!StringUtils.isEmpty(projectStoryInfoEntity.getFile())){
+                MultipartFile file = projectStoryInfoEntity.getFile();
                 ProjectResourceInfoModel projectResourceInfoModel = new ProjectResourceInfoModel();
                 projectResourceInfoModel.setCreator(projectStoryInfoEntity.getCreator());
                 projectResourceInfoModel = projectResourceInfoService.addProjectResourceInfo(projectResourceInfoModel);
@@ -115,5 +118,11 @@ public class ProjectStoryInfoServiceImpl implements ProjectStoryInfoService {
         }
         BeanUtils.copyProperties(projectStoryInfoModel,projectStoryInfoEntity);
         return projectStoryInfoEntity;
+    }
+
+    @Override
+    public Response findUserByProjectStoryId(String projectStoryId) {
+        ProjectStoryInfoModel projectStoryInfoModel = this.findProjectStoryInfoById(projectStoryId);
+        return userProjectController.findUserByProjectId(projectStoryInfoModel.getProjectId());
     }
 }

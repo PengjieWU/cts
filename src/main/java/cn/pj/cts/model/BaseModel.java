@@ -17,6 +17,4 @@ public class BaseModel implements Serializable {
     /**BaseModel基础属性Deleted*/
     public final static String BAS_MODEL_DELETED = "Deleted";
 
-
-
 }

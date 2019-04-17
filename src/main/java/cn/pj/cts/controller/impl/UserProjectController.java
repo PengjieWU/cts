@@ -3,6 +3,7 @@ package cn.pj.cts.controller.impl;
 import cn.pj.cts.common.ErrorCodeAndMsg;
 import cn.pj.cts.common.ErrorsException;
 import cn.pj.cts.common.Response;
+import cn.pj.cts.entity.AddUserEntity;
 import cn.pj.cts.entity.UserProjectEntity;
 import cn.pj.cts.model.ProjectModel;
 import cn.pj.cts.model.UserModel;
@@ -10,10 +11,12 @@ import cn.pj.cts.model.UserProjectModel;
 import cn.pj.cts.service.ProjectService;
 import cn.pj.cts.service.UserProjectService;
 import cn.pj.cts.service.UserService;
+import cn.pj.cts.util.SendMail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,7 @@ import java.util.List;
  * @Date: Create in 12:06 2019/2/16
  * @Modify By:
  **/
+@Component
 @RestController
 @RequestMapping(value="userproject")
 @Slf4j
@@ -92,6 +96,42 @@ public class UserProjectController {
         return new Response();
     }
 
+    @PostMapping("/addUser.action")
+    public Response addUser(@RequestBody AddUserEntity addUserEntity,HttpSession session){
+        if(StringUtils.isEmpty(addUserEntity.getProjectId())){
+            throw new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
+        }
+        if(StringUtils.isEmpty(addUserEntity.getTargetEmail())){
+            throw  new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
+        }
+        if(StringUtils.isEmpty(addUserEntity.getRole())){
+            throw  new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
+        }
+        UserModel userModel = userService.findLoginUserModel(session);
+        String userName = userModel.getUserName();
+        ProjectModel projectModel = projectService.findProjectById(addUserEntity.getProjectId());
+        String projectName = projectModel.getProjectName();
+        try {
+            SendMail.testSend(addUserEntity.getTargetEmail(),userName,projectName,addUserEntity.getProjectId(),addUserEntity.getRole());
+        }catch (Exception e){
+            throw  new ErrorsException(ErrorCodeAndMsg.Network_error);
+        }
+        return new Response();
+    }
 
+    @PostMapping("/addUserJump.action")
+    public Response addUserJump(@RequestBody AddUserEntity addUserEntity,HttpSession session){
+        if(StringUtils.isEmpty(addUserEntity.getProjectId())){
+            throw new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
+        }
+        if(StringUtils.isEmpty(addUserEntity.getTargetEmail())){
+            throw  new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
+        }
+        if(StringUtils.isEmpty(addUserEntity.getRole())){
+            throw  new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
+        }
+        userProjectService.addUserJump(addUserEntity,session);
+        return  new Response();
+    }
 
 }

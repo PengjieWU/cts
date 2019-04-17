@@ -43,8 +43,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUser(UserModel userModel) {
-        return userRepository.update(userModel);
+    public int updateUser(UserModel userModel,HttpSession session) {
+        List<UserModel> userModels = this.userRepository.findByUserLoginAccount(userModel.getUserLoginAccount());
+        if(CollectionUtils.isEmpty(userModels)){
+            userModel.setUserName("测试");
+            userRepository.save(userModel);
+            session.setAttribute("userModel",userModel);
+        }else{
+            userModels.get(0).setUserPassword(userModel.getUserPassword());
+
+            session.setAttribute("userModel",userModels.get(0));
+            return userRepository.update(userModels.get(0));
+        }
+        return 1;
     }
 
     @Override
@@ -52,7 +63,7 @@ public class UserServiceImpl implements UserService {
         int count = 0;
         if(!CollectionUtils.isEmpty(userModels)){
             for(UserModel userModel:userModels){
-                this.updateUser(userModel);
+                //this.updateUser(userModel);
                 count++;
             }
         }
@@ -102,6 +113,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel findLoginUserModel(HttpSession session) {
-        return Optional.ofNullable((UserModel)session.getAttribute("userModel")).orElse(new UserModel());
+         UserModel userModel = (UserModel)session.getAttribute("userModel");
+        if(userModel == null){
+            throw new ErrorsException(ErrorCodeAndMsg.Login_Account_Error);
+        }else{
+            return userModel;
+        }
+    }
+
+    @Override
+    public boolean judgeUserLoginAccoutLegal(String userLoginAccout) {
+        List<UserModel> userModels = userRepository.findByUserLoginAccount(userLoginAccout);
+        Response response = new Response();
+        if(CollectionUtils.isEmpty(userModels)){
+           return true;
+        }else{
+           return false;
+        }
     }
 }

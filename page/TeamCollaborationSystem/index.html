@@ -10,7 +10,7 @@
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 	<title>FLAT - Dynamic tables</title>
-
+	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- jQuery UI -->
@@ -75,11 +75,10 @@
 	<link rel="shortcut icon" href="img/favicon.ico" />
 	<!-- Apple devices Homescreen icon -->
 	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
-
+	<script src="js/story/allstory.js"></script>
 </head>
 
 <body>
-	
 	<div id="navigation">
 		<div class="container-fluid">
 			<a href="#" id="brand">TEAM</a>
@@ -231,7 +230,7 @@
 											<th class='hidden-480'>Options</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="userStoryList">
 										<tr>
 											<td class="with-checkbox">
 												<input type="checkbox" name="check" value="1">
@@ -258,7 +257,7 @@
 											<td class="with-checkbox">
 												<input type="checkbox" name="check" value="1">
 											</td>
-											<td>Jane Doe</td>
+											<td>吴鹏杰</td>
 											<td>jane.doe@johndoe.com</td>
 											<td class='hidden-350'>
 												<span class="label label-satgreen">Active</span>
@@ -723,80 +722,6 @@
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="box">
-							<div class="box-title">
-								<h3>
-									<i class="fa fa-table"></i>
-									团队成员
-								</h3>
-							</div>
-							<div class="box-content nopadding">
-								<table class="table table-hover table-nomargin">
-									<thead>
-										<tr>
-											<th>用户名</th>
-											<th>联系邮箱</th>
-											<th class='hidden-350'>团队职责</th>
-											<th class='hidden-1024'>加入时间</th>
-											<th class='hidden-480'>从团队中移除</th>
-										</tr>
-									</thead>
-									<tbody id="userList" name= "userList">
-										
-										<tr>
-											<td>Trident</td>
-											<td>
-												Internet Explorer 4.0
-											</td>
-											<td class='hidden-350'>Win 95+</td>
-											<td class='hidden-1024'>4</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Presto</td>
-											<td>Nokia N800</td>
-											<td class='hidden-350'>N800</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>A</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>NetFront 3.4</td>
-											<td class='hidden-350'>Embedded devices</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>A</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Dillo 0.8</td>
-											<td class='hidden-350'>Embedded devices</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Links</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-										<tr>
-											<td>Misc</td>
-											<td>Lynx</td>
-											<td class='hidden-350'>Text only</td>
-											<td class='hidden-1024'>-</td>
-											<td class='hidden-480'>X</td>
-										</tr>
-									
-								
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
 				
 			</div>
 		</div>

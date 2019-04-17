@@ -1,7 +1,9 @@
 package cn.pj.cts.service;
 
+import cn.pj.cts.common.Response;
 import cn.pj.cts.entity.ProjectStoryInfoEntity;
 import cn.pj.cts.model.ProjectStoryInfoModel;
+import cn.pj.cts.model.UserModel;
 import org.springframework.data.domain.Example;
 
 import java.util.List;
@@ -34,4 +36,6 @@ public interface ProjectStoryInfoService {
     List<ProjectStoryInfoModel> findProjectStoryInfosByExample(Example projectStoryInfoModel);
 
     ProjectStoryInfoEntity addProjectStoryInfoEntity(ProjectStoryInfoEntity projectStoryInfoEntity);
+
+    Response findUserByProjectStoryId(String projectStoryId);
 }

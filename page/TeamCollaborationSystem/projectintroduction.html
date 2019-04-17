@@ -9,7 +9,7 @@
 	<!-- Apple devices fullscreen -->
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-	<title>Team</title>
+	<title>TEAMCOLLABORATIONSYSTEM - PROJECT</title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -80,8 +80,8 @@
 			</a>
 			<div class="user">
 				<div class="dropdown">
-					<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe
-						<img src="img/demo/user-avatar.jpg" alt="">
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown">吴鹏杰
+						
 					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
@@ -97,55 +97,81 @@
 	</div>
 	<div class="container-fluid" id="content">
 		<div id="left">
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目维护</span>
-					</a>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>基本操作</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href = "updateuserinfo.html">修改个人基本信息</a>
+						</li>
+						<li>
+							<a href="createproject.html" >新建项目</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目基本信息</a>
-					</li>
-					<li>
-						<a href="#">项目组成员组成</a>
-					</li>
-				</ul>
-			</div>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目进度</span>
-					</a>
+				
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目维护</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href = "#" onclick="jumpProjectIntroduce()">项目基本信息</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpProjectUser()">项目组成员组成</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目问题总览</a>
-					</li>
-					<li>
-						<a href="#">项目任务拆分</a>
-					</li>
-					<li>
-						<a href="#">项目进度汇报</a>
-					</li>
-				</ul>
-			</div>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目资源汇总</span>
-					</a>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目进度</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpAllStory()">项目问题总览</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpCreateStory()">项目任务拆分</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpTaskInfo()">项目进度汇报</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpStoryAllMine()">我的任务</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目资源</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目问题社区</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpQuestionAllProject()">项目问题汇总</a>
+						</li>
+					</ul>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
+						</li>
+					</ul>
+				</div>
+				</div>
+		
 		<div id="main">
 			<div class="container-fluid">
 				<div class="page-header">
@@ -155,7 +181,7 @@
 					<div class="pull-right">
 						<ul class="minitiles">
 							<li class='grey'>
-								<a href="#">
+								<a href="#" onclick="modifiedProjectInfo()">
 									<i class="fa fa-cogs"></i>
 								</a>
 							</li>
@@ -169,8 +195,8 @@
 							<li class='lightred'>
 								<i class="fa fa-calendar"></i>
 								<div class="details">
-									<span class="big">February 22, 2013</span>
-									<span>Wednesday, 13:56</span>
+									<span class="big"></span>
+									<span></span>
 								</div>
 							</li>
 						</ul>

@@ -13,13 +13,13 @@ import java.util.List;
  **/
 public class ProjectStoryInfoEntity extends ProjectStoryInfoModel {
 
-    private MultipartFile storyAttachementFiles;
+    private MultipartFile file;
 
-    public MultipartFile getStoryAttachementFiles() {
-        return storyAttachementFiles;
+    public MultipartFile getFile() {
+        return file;
     }
 
-    public void setStoryAttachementFiles(MultipartFile storyAttachementFiles) {
-        this.storyAttachementFiles = storyAttachementFiles;
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

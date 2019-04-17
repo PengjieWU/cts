@@ -14,6 +14,8 @@ public enum ErrorCodeAndMsg {
     Save_Condition_Missing("-1","保存缺少必要参数"),
     Delete_Condition_Missing("-1","删除缺少必要参数"),
     Login_Condition_Error("-1","账号或者密码错误"),
+    Login_Account_Error("-1","登录信息异常"),
+    Grantor_Authority_Error("-2","菜单重复授权给同一用户"),
     Network_error("-1","网络错误，待会重试"),
     ;
 

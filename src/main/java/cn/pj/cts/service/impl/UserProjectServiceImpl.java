@@ -2,13 +2,19 @@ package cn.pj.cts.service.impl;
 
 import cn.pj.cts.common.Response;
 import cn.pj.cts.dao.UserProjectRepository;
+import cn.pj.cts.entity.AddUserEntity;
+import cn.pj.cts.model.UserModel;
 import cn.pj.cts.model.UserProjectModel;
 import cn.pj.cts.service.UserProjectService;
+import cn.pj.cts.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -24,6 +30,9 @@ public class UserProjectServiceImpl implements UserProjectService {
 
     @Autowired
     private UserProjectRepository userProjectRepository;
+
+    @Autowired
+    private UserService userService;
 
 
     @Override
@@ -75,5 +84,26 @@ public class UserProjectServiceImpl implements UserProjectService {
     @Override
     public List<UserProjectModel> findUserProjectsByExample(Example userProjectModel) {
         return userProjectRepository.findAll(userProjectModel);
+    }
+
+    @Override
+    public void addUserJump(AddUserEntity addUserEntity,HttpSession session) {
+        UserModel userModel = new UserModel();
+        userModel.setUserLoginAccount(addUserEntity.getTargetEmail());
+        Example<UserModel> userModelExample = Example.of(userModel);
+        List<UserModel> userModels = userService.findUsersByExample(userModelExample);
+        if(CollectionUtils.isEmpty(userModels)){
+            userModel.setUserName("Jay");
+            userModel.setUserPassword("123456");
+            userModel = userService.addUser(userModel);
+        }else{
+            userModel = userModels.get(0);
+        }
+        session.setAttribute("userModel",userModel);
+        UserProjectModel userProjectModel = new UserProjectModel();
+        userProjectModel.setProjectId(addUserEntity.getProjectId());
+        userProjectModel.setUserId(userModel.getUserId());
+        userProjectModel.setProjectRole(addUserEntity.getRole());
+        userProjectRepository.save(userProjectModel);
     }
 }

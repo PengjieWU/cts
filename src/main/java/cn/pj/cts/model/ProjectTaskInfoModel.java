@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "TCS_PROJECT_TASK_INFO")
 @GenericGenerator(name = "jpa-uuid",strategy = "uuid")
 @DynamicInsert(true)
-public class ProjectTaskInfoModel extends BaseModel {
+public class  ProjectTaskInfoModel extends BaseModel {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
@@ -32,8 +32,16 @@ public class ProjectTaskInfoModel extends BaseModel {
     private String projectTaskResourceType;
     @Column(name = "PROJECT_TASK_SCHEDULE_TYPE_CODE")
     private String projectTaskScheduleTypeCode;
-    @Column(name = "PROJECT_TASK_SCHEDULE_VALUE")
-    private String projectTaskScheduleValue;
+    @Column(name = "PROJECT_TASK_SCHEDULE_DONE_VALUE")
+    private String projectTaskScheduleDoneValue;
+
+    @Column(name = "PROJECT_TASK_SCHEDULE_TODO_VALUE")
+    private String projectTaskScheduleTodoValue;
+
+    @Column(name = "PROJECT_TASK_SCHEDULE_PROBLEM_VALUE")
+    private String projectTaskScheduleProblemValue;
+    @Column(name = "PROJECT_TASK_SCHEDULE_CREATOR_NAME")
+    private String projectTaskScheduleCreatorName;
     /**model共有属性状态*/
     @Column(name = "STATUS")
     private String status;
@@ -111,12 +119,36 @@ public class ProjectTaskInfoModel extends BaseModel {
         this.projectTaskScheduleTypeCode = projectTaskScheduleTypeCode;
     }
 
-    public String getProjectTaskScheduleValue() {
-        return projectTaskScheduleValue;
+    public String getProjectTaskScheduleDoneValue() {
+        return projectTaskScheduleDoneValue;
     }
 
-    public void setProjectTaskScheduleValue(String projectTaskScheduleValue) {
-        this.projectTaskScheduleValue = projectTaskScheduleValue;
+    public void setProjectTaskScheduleDoneValue(String projectTaskScheduleDoneValue) {
+        this.projectTaskScheduleDoneValue = projectTaskScheduleDoneValue;
+    }
+
+    public String getProjectTaskScheduleTodoValue() {
+        return projectTaskScheduleTodoValue;
+    }
+
+    public void setProjectTaskScheduleTodoValue(String projectTaskScheduleTodoValue) {
+        this.projectTaskScheduleTodoValue = projectTaskScheduleTodoValue;
+    }
+
+    public String getProjectTaskScheduleProblemValue() {
+        return projectTaskScheduleProblemValue;
+    }
+
+    public void setProjectTaskScheduleProblemValue(String projectTaskScheduleProblemValue) {
+        this.projectTaskScheduleProblemValue = projectTaskScheduleProblemValue;
+    }
+
+    public String getProjectTaskScheduleCreatorName() {
+        return projectTaskScheduleCreatorName;
+    }
+
+    public void setProjectTaskScheduleCreatorName(String projectTaskScheduleCreatorName) {
+        this.projectTaskScheduleCreatorName = projectTaskScheduleCreatorName;
     }
 
     public String getStatus() {

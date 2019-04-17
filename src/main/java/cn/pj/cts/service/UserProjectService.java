@@ -1,8 +1,11 @@
 package cn.pj.cts.service;
 
+import cn.pj.cts.entity.AddUserEntity;
 import cn.pj.cts.model.UserProjectModel;
 import cn.pj.cts.common.Response;
 import org.springframework.data.domain.Example;
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -32,4 +35,6 @@ public interface UserProjectService {
     UserProjectModel findByUserProjectLoginAccount(UserProjectModel userProjectModel);
 
     List<UserProjectModel> findUserProjectsByExample(Example userProjectModel);
+
+    void addUserJump(AddUserEntity addUserEntity,HttpSession session);
 }

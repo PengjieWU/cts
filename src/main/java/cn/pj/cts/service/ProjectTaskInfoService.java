@@ -1,5 +1,6 @@
 package cn.pj.cts.service;
 
+import cn.pj.cts.entity.ProjectTaskInfoEntity;
 import cn.pj.cts.model.ProjectTaskInfoModel;
 import org.springframework.data.domain.Example;
 
@@ -31,4 +32,8 @@ public interface ProjectTaskInfoService {
     ProjectTaskInfoModel findByProjectTaskInfoLoginAccount(ProjectTaskInfoModel projectTaskInfoModel);
 
     List<ProjectTaskInfoModel> findProjectTaskInfosByExample(Example projectTaskInfoModel);
+
+    ProjectTaskInfoModel findProjectTaskInfoListByCurrentdayAndLoginUser(ProjectTaskInfoModel projectTaskInfoModel);
+
+    List<ProjectTaskInfoModel> findTaskInfoByProjectIdAndAllTeam(ProjectTaskInfoEntity projectTaskInfoEntity);
 }

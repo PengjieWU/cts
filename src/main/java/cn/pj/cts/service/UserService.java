@@ -2,6 +2,7 @@ package cn.pj.cts.service;
 
 import cn.pj.cts.common.Response;
 import cn.pj.cts.model.UserModel;
+import org.apache.tomcat.jni.User;
 import org.springframework.data.domain.Example;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +23,7 @@ public interface UserService {
 
     List<UserModel> addBacthUsers(List<UserModel> userModels);
 
-    int updateUser(UserModel userModel);
+    int updateUser(UserModel userModel,HttpSession session);
 
     int updateBacthUsers(List<UserModel> userModels);
 
@@ -39,5 +40,9 @@ public interface UserService {
     List<UserModel> findUsersByExample(Example userModel);
 
     UserModel findLoginUserModel(HttpSession session);
+
+    boolean judgeUserLoginAccoutLegal(String userLoginAccout);
+
+
 
 }

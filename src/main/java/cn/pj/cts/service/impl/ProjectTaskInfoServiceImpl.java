@@ -1,13 +1,20 @@
 package cn.pj.cts.service.impl;
 
+import cn.pj.cts.dao.ProjectTaskInfoRepository;
+import cn.pj.cts.entity.ProjectTaskInfoEntity;
 import cn.pj.cts.model.ProjectTaskInfoModel;
 import cn.pj.cts.service.ProjectTaskInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author:Pengjie WU
@@ -18,9 +25,12 @@ import java.util.List;
 @Service("projectTaskInfoService")
 @Slf4j
 public class ProjectTaskInfoServiceImpl implements ProjectTaskInfoService {
+
+    @Autowired
+    private ProjectTaskInfoRepository projectTaskInfoRepository;
     @Override
     public ProjectTaskInfoModel addProjectTaskInfo(ProjectTaskInfoModel projectTaskInfoModel) {
-        return null;
+        return projectTaskInfoRepository.save(projectTaskInfoModel);
     }
 
     @Override
@@ -30,7 +40,7 @@ public class ProjectTaskInfoServiceImpl implements ProjectTaskInfoService {
 
     @Override
     public int updateProjectTaskInfo(ProjectTaskInfoModel projectTaskInfoModel) {
-        return 0;
+        return projectTaskInfoRepository.update(projectTaskInfoModel);
     }
 
     @Override
@@ -66,5 +76,23 @@ public class ProjectTaskInfoServiceImpl implements ProjectTaskInfoService {
     @Override
     public List<ProjectTaskInfoModel> findProjectTaskInfosByExample(Example projectTaskInfoModel) {
         return null;
+    }
+
+    @Override
+    public ProjectTaskInfoModel findProjectTaskInfoListByCurrentdayAndLoginUser(ProjectTaskInfoModel projectTaskInfoModel) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+        String dateStr = simpleDateFormat.format(date);
+        projectTaskInfoModel = projectTaskInfoRepository.findProjectTaskInfosByExample(projectTaskInfoModel.getProjectId(),projectTaskInfoModel.getCreator(),dateStr);
+        return Optional.ofNullable(projectTaskInfoModel).orElse(new ProjectTaskInfoModel());
+    }
+
+    @Override
+    public List<ProjectTaskInfoModel> findTaskInfoByProjectIdAndAllTeam(ProjectTaskInfoEntity projectTaskInfoEntity) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String dateStr = simpleDateFormat.format(projectTaskInfoEntity.getSelectDay());
+        List<ProjectTaskInfoModel> projectTaskInfoModels = new ArrayList<>(8);
+        projectTaskInfoModels = projectTaskInfoRepository.findTaskInfoByProjectIdAndAllTeam(projectTaskInfoEntity.getProjectId(),dateStr);
+        return Optional.ofNullable(projectTaskInfoModels).orElse(new ArrayList<ProjectTaskInfoModel>());
     }
 }

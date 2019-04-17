@@ -7,7 +7,7 @@ function GetQueryString(name) {
 
 $(function() {
 	var projectId = GetQueryString("projectId");
-	alert(projectId);
+	
 	var routeUrl = "http://127.0.0.1:8088/teamcollaborationsystem/projectstoryinfo/findStoryInfoByProjectId.action?projectId="+projectId;
 	$.ajax({
 		type: "GET", //方法类型
@@ -24,7 +24,6 @@ $(function() {
 				var userList = result.data;
 				var str = "";
 				$(userList).each(function(index,item){
-						
 						str+="<tr>";
 						str+="<td>";
 						str+=item.projectStoryName;
@@ -40,16 +39,16 @@ $(function() {
 						str+="</td>";
 						str+="<td class=\"hidden-480\">";
 						str+=item.projectStoryDurationTime;
-						str+="<a href=\"#\" onclick=\"viewStoryInfo(\'";
+						str+="<a href=\"modifiedstory.html?projectStoryId=";
 						str+=item.projectStoryId;
-						str+="\')\"";
-						str+="class=\"btn\" rel=\"tooltip\" title=\"View\">";
+						str+="\"";
+						str+="target=\"_blank\" class=\"btn\" rel=\"tooltip\" title=\"View\">";
 						str+="<i class=\"fa fa-edit\"></i>";
 						str+="</a>";
 						str+="</td>";
 						str+="</tr>";
 					});
-					$("#userStoryList").html(str);
+					document.getElementById('userStoryList').innerHTML=str;
 			}
 		},
 		error: function() {
@@ -58,3 +57,53 @@ $(function() {
 	});
 
 });
+
+
+function jumpProjectIntroduce() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "projectintroduction.html?projectId="+projectId;
+}
+
+function jumpProjectUser() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "projectuser.html?projectId="+projectId;
+}
+
+function jumpAllStory() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "allstorytest.html?projectId="+projectId;
+}
+
+function jumpCreateStory() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "createstory.html?projectId="+projectId;
+}
+
+function jumpTaskInfo() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "taskinfo.html?projectId="+projectId;
+}
+
+function jumpStoryAllMine() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "storyofmine.html?projectId="+projectId;
+}
+
+
+function jumpQuestionAllProject() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "projectquestion.html?projectId="+projectId;
+}
+
+function jumpQuestionAdd() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "addquestion.html?projectId="+projectId;
+}

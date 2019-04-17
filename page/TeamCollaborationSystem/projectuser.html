@@ -9,7 +9,7 @@
 	<!-- Apple devices fullscreen -->
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-	<title>FLAT - Basic tables</title>
+	<title>TEAMCOLLABORATIONSYSTEM - PROJECT</title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -68,11 +68,12 @@
 	<!-- Apple devices Homescreen icon -->
 	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
 	
-	<script src="js/project/projectuser.js"></script>
+	<script src="js/project/projectUser.js"></script>
 
 </head>
 
 <body>
+	
 	
 	<div id="navigation">
 		<div class="container-fluid">
@@ -80,74 +81,70 @@
 			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
 				<i class="fa fa-bars"></i>
 			</a>
-			<div class="user">
-				<div class="dropdown">
-					<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe
-						<img src="img/demo/user-avatar.jpg" alt="">
-					</a>
-					<ul class="dropdown-menu pull-right">
-						<li>
-							<a href="more-userprofile.html">修改个人资料</a>
-						</li>
-						<li>
-							<a href="#">退出登录</a>
-						</li>
-					</ul>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="container-fluid" id="content">
 		<div id="left">
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目维护</span>
-					</a>
+				
+				
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目基本信息</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href = "#" onclick="jumpProjectIntroduce()">项目简介</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpProjectUser()">项目组成员</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目基本信息</a>
-					</li>
-					<li>
-						<a href="#">项目组成员组成</a>
-					</li>
-				</ul>
-			</div>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目进度</span>
-					</a>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目TASK</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpAllStory()">项目TASK总览</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpCreateStory()">项目TASK拆分</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpStoryAllMine()">我的TASK</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpTaskInfo()">项目进度汇报</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目问题总览</a>
-					</li>
-					<li>
-						<a href="#">项目任务拆分</a>
-					</li>
-					<li>
-						<a href="#">项目进度汇报</a>
-					</li>
-				</ul>
-			</div>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目资源汇总</span>
-					</a>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目问题社区</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpQuestionAllProject()">项目问题汇总</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目资源</a>
-					</li>
-				</ul>
+				<div class="subnav" id = "adminMenu">
+				</div>
 			</div>
-		</div>
+		
 		<div id="main">
 			<div class="container-fluid">
 				<div class="page-header">
@@ -171,8 +168,8 @@
 							<li class='lightred'>
 								<i class="fa fa-calendar"></i>
 								<div class="details">
-									<span class="big">February 22, 2013</span>
-									<span>Wednesday, 13:56</span>
+									<span class="big"></span>
+									<span></span>
 								</div>
 							</li>
 						</ul>
@@ -207,18 +204,13 @@
 								<table class="table table-hover table-nomargin">
 									<thead>
 										<tr>
-											<th>用户名</th>
-											<th>联系邮箱</th>
-											<th class='hidden-350'>团队职责</th>
+											<th class='hidden-480'">用户名</th>
+											<th class='hidden-480'">联系邮箱</th>
+											<th class='hidden-480'">团队职责</th>
 											<th class='hidden-1024'>加入时间</th>
-											<th class='hidden-480'>从团队中移除</th>
 										</tr>
 									</thead>
 									<tbody id="userList" name= "userList">
-										
-										
-									
-								
 									</tbody>
 								</table>
 							</div>
@@ -230,7 +222,7 @@
 			<div>
 		</div>
 	</div>
-
+	
 </body>
 
 </html>

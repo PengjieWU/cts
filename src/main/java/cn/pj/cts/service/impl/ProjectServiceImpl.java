@@ -2,10 +2,10 @@ package cn.pj.cts.service.impl;
 
 import cn.pj.cts.common.Response;
 import cn.pj.cts.dao.ProjectRepository;
+import cn.pj.cts.dao.SystemMenuRepository;
 import cn.pj.cts.dao.UserProjectRepository;
-import cn.pj.cts.model.ProjectModel;
-import cn.pj.cts.model.UserModel;
-import cn.pj.cts.model.UserProjectModel;
+import cn.pj.cts.model.*;
+import cn.pj.cts.service.ProjectMenuService;
 import cn.pj.cts.service.ProjectService;
 import cn.pj.cts.service.UserProjectService;
 import cn.pj.cts.service.UserService;
@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -34,18 +35,34 @@ public class ProjectServiceImpl implements ProjectService  {
     private UserProjectRepository userProjectRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private SystemMenuRepository systemMenuRepository;
+    @Autowired
+    private ProjectMenuService projectMenuService;
 
     @Override
     public ProjectModel addProject(ProjectModel projectModel) {
-
+        //保存项目信息
         projectModel =  projectRepository.save(projectModel) ;
+        //保存用户与项目的关联信息
         UserProjectModel userProjectModel = new UserProjectModel();
         userProjectModel.setProjectId(projectModel.getProjectId());
         userProjectModel.setUserId(projectModel.getCreator());
         userProjectModel.setCreator(projectModel.getCreator());
         userProjectRepository.save(userProjectModel);
+        //保存用户 项目 与菜单的关系。默认项目的创建者拥有项目的全部权限
+        List<SystemMenuModel> systemMenuModels = systemMenuRepository.findAll();
+        if(!CollectionUtils.isEmpty(systemMenuModels)){
+            for(SystemMenuModel systemMenuModel:systemMenuModels){
+                ProjectMenuModel projectMenuModel = new ProjectMenuModel();
+                projectMenuModel.setProjectId(projectModel.getProjectId());
+                projectMenuModel.setMenuId(systemMenuModel.getMenuId());
+                projectMenuModel.setGrantorId(projectModel.getCreator());
+                projectMenuModel.setReceiveId(projectModel.getCreator());
+                projectMenuService.addProjectMenu(projectMenuModel);
+            }
+        }
         return projectModel;
-
     }
 
     @Override

@@ -9,7 +9,7 @@
 		<!-- Apple devices fullscreen -->
 		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<title>TEAMCOLLABORATIONSYSTEM - Homepage</title>
+		<title>TEAMCOLLABORATIONSYSTEM - HOMEPAGE</title>
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -95,6 +95,7 @@
 		<link rel="shortcut icon" href="img/favicon.ico" />
 		<!-- Apple devices Homescreen icon -->
 		<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+		
 	</head>
 
 	<body>
@@ -104,25 +105,27 @@
 				<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</a>
-				<div class="user">
-					<div class="dropdown">
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe
-							<img src="img/demo/user-avatar.jpg" alt="">
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="more-userprofile.html">修改个人资料</a>
-							</li>
-							<li>
-								<a href="#">退出登录</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="container-fluid" id="content">
 			<div id="left">
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>基本操作</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href = "updateUserInfo.html">修改个人基本信息</a>
+						</li>
+						<li>
+							<a href="createProject.html" >新建项目</a>
+						</li>
+					</ul>
+				</div>
+				
 				<div class="subnav">
 					<div class="subnav-title" onclick="findProjectByMyselfCreate()">
 						<a href="#" class='toggle-subnav'>
@@ -155,7 +158,7 @@
 						<div class="pull-right">
 							<ul class="minitiles">
 								<li class='grey'>
-									<a href="#">
+									<a href="createproject.html">
 										<i class="fa fa-cogs"></i>
 									</a>
 								</li>
@@ -169,8 +172,8 @@
 								<li class='lightred'>
 									<i class="fa fa-calendar"></i>
 									<div class="details">
-										<span class="big">February 22, 2013</span>
-										<span>Wednesday, 13:56</span>
+										<span class="big"></span>
+										<span></span>
 									</div>
 								</li>
 							</ul>

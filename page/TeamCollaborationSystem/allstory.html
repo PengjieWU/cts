@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<<head>
+	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<!-- Apple devices fullscreen -->
@@ -8,7 +8,7 @@
 	<!-- Apple devices fullscreen -->
 	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-	<title>FLAT - Dynamic tables</title>
+	<title>TEAMCOLLABORATIONSYSTEM - STORY</title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -86,12 +86,12 @@
 			</a>
 			<div class="user">
 				<div class="dropdown">
-					<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe
-						<img src="img/demo/user-avatar.jpg" alt="">
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown">吴鹏杰
+						<!--<img src="img/demo/user-avatar.jpg" alt="">-->
 					</a>
 					<ul class="dropdown-menu pull-right">
 						<li>
-							<a href="more-userprofile.html">修改个人资料</a>
+							<a href="#">修改个人资料</a>
 						</li>
 						<li>
 							<a href="#">退出登录</a>
@@ -103,55 +103,80 @@
 	</div>
 	<div class="container-fluid" id="content">
 		<div id="left">
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目维护</span>
-					</a>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>基本操作</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href = "updateuserinfo.html">修改个人基本信息</a>
+						</li>
+						<li>
+							<a href="createproject.html" >新建项目</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目基本信息</a>
-					</li>
-					<li>
-						<a href="#">项目组成员组成</a>
-					</li>
-				</ul>
-			</div>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目进度</span>
-					</a>
+				
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目维护</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href = "#" onclick="jumpProjectIntroduce()">项目基本信息</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpProjectUser()">项目组成员组成</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目问题总览</a>
-					</li>
-					<li>
-						<a href="#">项目任务拆分</a>
-					</li>
-					<li>
-						<a href="#">项目进度汇报</a>
-					</li>
-				</ul>
-			</div>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'>
-						<i class="fa fa-angle-down"></i>
-						<span>项目资源汇总</span>
-					</a>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目进度</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpAllStory()">项目问题总览</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpCreateStory()">项目任务拆分</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpTaskInfo()">项目进度汇报</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpStoryAllMine()">我的任务</a>
+						</li>
+					</ul>
 				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">项目资源</a>
-					</li>
-				</ul>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'>
+							<i class="fa fa-angle-down"></i>
+							<span>项目问题社区</span>
+						</a>
+					</div>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpQuestionAllProject()">项目问题汇总</a>
+						</li>
+					</ul>
+					<ul class="subnav-menu">
+						<li>
+							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
 		<div id="main">
 			<div class="container-fluid">
 				<div class="page-header">
@@ -175,8 +200,8 @@
 							<li class='lightred'>
 								<i class="fa fa-calendar"></i>
 								<div class="details">
-									<span class="big">February 22, 2013</span>
-									<span>Wednesday, 13:56</span>
+									<span class="big"></span>
+									<span></span>
 								</div>
 							</li>
 						</ul>
@@ -208,7 +233,7 @@
 								</h3>
 							</div>
 							<div class="box-content nopadding">
-								<table class="table table-hover table-nomargin table-bordered dataTable-columnfilter dataTable">
+								<table  id="userStoryList" name="userStoryList" class="table table-hover table-nomargin table-bordered dataTable-columnfilter dataTable">
 									<thead>
 										<tr class='thefilter'>
 											<th>UserStory标题</th>
@@ -217,16 +242,16 @@
 											<th class='hidden-1024'>UserStory进行程度</th>
 											<th class='hidden-480'>UserStory完成时间</th>
 										</tr>
-										<tr>
+										<!--<tr>
 											<th>UserStory标题</th>
 											<th>UserStory类型</th>
 											<th class='hidden-350'>UserStory目标</th>
 											<th class='hidden-1024'>UserStory进行程度</th>
 											<th class='hidden-480'>UserStory完成时间</th>
-										</tr>
+										</tr>-->
 									</thead>
-									<tbody id="userStoryList" name="userStoryList">
-									
+									<tbody >
+										
 									</tbody>
 								</table>
 							</div>
@@ -237,5 +262,68 @@
 			</div>
 		</div>
 	</div>
+	<script>
+				$(document).ready( function () {
+				    $('#userStoryList').DataTable({
+				    	paging: false,
+				    	searching:false,
+				    	bLengthChange:false,
+				    	language : {
+				    		"lengthMenu" : '每页显示<select>' + '<option value="10">10</option>'
+													+ '<option value="20">20</option>'
+													+ '<option value="30">30</option>'
+													+ '<option value="40">40</option>'
+													+ '<option value="50">50</option>' + '</select>条',
+				    		"paginate" : {
+												"first" : "首页",
+												"last" : "尾页",
+												"previous" : "上一页",
+												"next" : "下一页"
+											},
+							"processing" : "加载中...",  //DataTables载入数据时，是否显示‘进度’提示  
+							"emptyTable" : "暂无数据",
+							"info" : "共 _PAGES_ 页  _TOTAL_ 条数据  ",
+							"infoEmpty" : "暂无数据",
+							"emptyTable" : "暂无要处理的数据...",  //表格中无数据
+							"search": "搜索:",
+							"infoFiltered" : " —— 从  _MAX_ 条数据中筛选",
+							"zeroRecords":    "没有找到记录"
+											
+				    	},
+				    	bRetrieve: true,
+				    	destory: true,
+				    	ajax : "http://127.0.0.1:8088/teamcollaborationsystem/projectstoryinfo/findStoryInfoByProjectId.action?projectId=40280b816905fb9a016905fc1ef50000",	
+				    	columns: [
+				    	    
+						    {
+							    "orderable" : false,
+								"data": "projectStoryName",		        	
+								'sClass': "text-center"		         		        	
+							},		        
+							{
+								"orderable" : false,
+								"data": "projectStoryTypeCode",	        	
+								'sClass': "text-center"	 	         	       	
+							 },
+							 {
+							    "orderable" : false,
+								"data": "targetUserName",		        	
+								'sClass': "text-center"		         		        	
+							},		        
+							{
+								"orderable" : false,
+								"data": "projectStoryProgress",	        	
+								'sClass': "text-center"	 	         	       	
+							 },
+							 {
+								"data": "id",
+						        "name" : "projectStoryId",
+						        "sDefaultContent":"",  //默认空字符串
+						        "sClass": "text-center" 	         	       	
+							 }
+				    	]
+				    });
+				} );
+		</script>
 </body>
 </html>
