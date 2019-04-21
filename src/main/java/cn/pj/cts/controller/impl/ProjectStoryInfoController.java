@@ -136,4 +136,17 @@ public class ProjectStoryInfoController {
         projectStoryInfoService.updateProjectStoryInfo(projectStoryInfoEntity);
         return new Response(projectStoryInfoEntity);
     }
+
+    @PostMapping("findAllStoryByStoryNameExample.action")
+    public Response findAllStoryByStoryNameExample(@RequestBody ProjectStoryInfoModel projectStoryInfoModel){
+        if(StringUtils.isEmpty(projectStoryInfoModel.getProjectId())){
+            throw  new ErrorsException(ErrorCodeAndMsg.Query_Condition_Missing);
+        }
+        if(StringUtils.isEmpty(projectStoryInfoModel.getProjectStoryName())){
+            throw  new ErrorsException(ErrorCodeAndMsg.Query_Condition_Missing);
+        }
+        projectStoryInfoModel.setProjectStoryName("%"+projectStoryInfoModel.getProjectStoryName()+"%");
+        List<ProjectStoryInfoModel> projectStoryInfoModels = projectStoryInfoService.findAllStoryByStoryNameExample(projectStoryInfoModel);
+        return new Response(projectStoryInfoModels);
+    }
 }

@@ -131,6 +131,8 @@ public class ProjectMenuServiceImpl implements ProjectMenuService {
             for(ProjectMenuModel model:projectMenuModels){
                 ProjectMenuEntity projectMenuEntity = new ProjectMenuEntity();
                 BeanUtils.copyProperties(model,projectMenuEntity);
+                SystemMenuModel systemMenuModel = systemMenuRepository.getOne(model.getMenuId());
+                projectMenuEntity.setMenuName(systemMenuModel.getMenuName());
                 UserModel grantorUserModel = userRepository.getOne(model.getGrantorId());
                 projectMenuEntity.setGrantorName(grantorUserModel.getUserName());
                 UserModel receiveUserModel = userRepository.getOne(model.getReceiveId());

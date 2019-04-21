@@ -345,3 +345,10 @@ $(function() {
 				}
 			});
 });
+
+
+function projectTaskAnalyse() {
+	
+				var projectId = GetQueryString("projectId");
+				window.location.href = "projectTaskAnalyse.html?projectId="+projectId;
+}

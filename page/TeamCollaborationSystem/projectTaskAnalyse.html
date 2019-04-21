@@ -9,7 +9,7 @@
 		<!-- Apple devices fullscreen -->
 		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<title>TEAMCOLLABORATIONSYSTEM - QUESTION</title>
+		<title>TEAMCOLLABORATIONSYSTEM - PROJECT</title>
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -127,33 +127,17 @@
 		<script src="js/plugins/validation/jquery.validate.min.js"></script>
 		<script src="js/plugins/validation/additional-methods.min.js"></script>
 		
-		<script src="js/question/addquestion.js"></script>
+		<script src="js/project/projectTaskAnalyse.js"></script>
 		
 	</head>
 
 	<body>
-		
 		<div id="navigation">
 			<div class="container-fluid">
 				<a href="#" id="brand">TEAM</a>
 				<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</a>
-				<div class="user">
-					<div class="dropdown">
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown">吴鹏杰
-							
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="more-userprofile.html">修改个人资料</a>
-							</li>
-							<li>
-								<a href="#">退出登录</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 		
@@ -163,15 +147,15 @@
 					<div class="subnav-title">
 						<a href="#" class='toggle-subnav'>
 							<i class="fa fa-angle-down"></i>
-							<span>基本操作</span>
+							<span>项目基本信息</span>
 						</a>
 					</div>
 					<ul class="subnav-menu">
 						<li>
-							<a href = "updateuserinfo.html">修改个人基本信息</a>
+							<a href = "#" onclick="jumpProjectIntroduce()">项目简介</a>
 						</li>
 						<li>
-							<a href="createproject.html" >新建项目</a>
+							<a href="#" onclick="jumpProjectUser()">项目组成员</a>
 						</li>
 					</ul>
 				</div>
@@ -179,65 +163,49 @@
 					<div class="subnav-title">
 						<a href="#" class='toggle-subnav'>
 							<i class="fa fa-angle-down"></i>
-							<span>项目维护</span>
+							<span>项目TASK</span>
 						</a>
 					</div>
 					<ul class="subnav-menu">
 						<li>
-							<a href = "#" onclick="jumpProjectIntroduce()">项目基本信息</a>
+							<a href="#" onclick="jumpAllStory()">项目TASK总览</a>
 						</li>
 						<li>
-							<a href="#" onclick="jumpProjectUser()">项目组成员组成</a>
-						</li>
-					</ul>
-				</div>
-				<div class="subnav">
-					<div class="subnav-title">
-						<a href="#" class='toggle-subnav'>
-							<i class="fa fa-angle-down"></i>
-							<span>项目进度</span>
-						</a>
-					</div>
-					<ul class="subnav-menu">
-						<li>
-							<a href="#" onclick="jumpAllStory()">项目问题总览</a>
+							<a href="#" onclick="jumpCreateStory()">项目TASK拆分</a>
 						</li>
 						<li>
-							<a href="#" onclick="jumpCreateStory()">项目任务拆分</a>
+							<a href="#" onclick="jumpStoryAllMine()">我的TASK</a>
 						</li>
 						<li>
 							<a href="#" onclick="jumpTaskInfo()">项目进度汇报</a>
 						</li>
-						<li>
-							<a href="#" onclick="jumpStoryAllMine()">我的任务</a>
-						</li>
 					</ul>
 				</div>
-				<div class="subnav">
+				<div class="subnav" >
 					<div class="subnav-title">
 						<a href="#" class='toggle-subnav'>
 							<i class="fa fa-angle-down"></i>
-							<span>项目问题社区</span>
+							<span>问题社区</span>
 						</a>
 					</div>
 					<ul class="subnav-menu">
 						<li>
+							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
+						</li>
+						<li>
 							<a href="#" onclick="jumpQuestionAllProject()">项目问题汇总</a>
 						</li>
 					</ul>
-					<ul class="subnav-menu">
-						<li>
-							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
-						</li>
-					</ul>
+				</div>
+				<div class="subnav" id = "adminMenu">
 				</div>
 			</div>
-		
+			
 			<div id="main">
 				<div class="container-fluid">
 					<div class="page-header">
 						<div class="pull-left">
-							<h1>创建问题</h1>
+							<h1>项目进度汇报</h1>
 						</div>
 						<div class="pull-right">
 							<ul class="minitiles">
@@ -270,7 +238,7 @@
 								<i class="fa fa-angle-right"></i>
 							</li>
 							<li>
-								<a href="components-messages.html">新建问题</a>
+								<a href="components-messages.html">当日项目进度汇报</a>
 							</li>
 						</ul>
 						<div class="close-bread">
@@ -284,47 +252,49 @@
 							<div class="box">
 								<div class="box-title">
 									<h3>
-									<i class="fa fa-edit"></i>问题基本信息</h3>
+									<i class="fa fa-edit"></i>汇报信息
+									<div class="actions">
+										<a href="#" onclick="projectTaskAnalyse()" data-toggle="modal" class='btn'>
+											<i class="fa fa-plus-circle"  ></i>汇报分析</a>
+									</div>
+									</h3>
 								</div>
 								<div class="box-content">
-									<form id="questionCreateForm" name ="questionCreateForm" method="POST" class='form-horizontal form-validate' enctype="multipart/form-data">
-										<div class="form-group" style="display:none">
-											<label for="textfield" class="control-label col-sm-2">projectId</label>
-											<div class="col-sm-10">
-												<input type="text" name="projectId" id="projectId" class="form-control" >
-												<span class="help-block">简结了当的形容当前task</span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="textfield" class="control-label col-sm-2">问题关键词</label>
-											<div class="col-sm-10">
-												<input type="text" name="projectQuestionKeyword" id="projectQuestionKeyword" class="form-control" data-rule-required="true">
-												<span class="help-block">利用两三个关键词点明问题</span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="textarea" class="control-label col-sm-2">问题详细描述</label>
-											<div class="col-sm-10">
-												<textarea name="projectQuestionDescription" id="projectQuestionDescription" class="form-control" data-rule-required="true"></textarea>
-												<span class="help-block">在这里你可以对该问题进行详细的描述，所有的所有你的疑问</span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="textarea" class="control-label col-sm-2">与问题相关的Story</label>
-											<div class="col-sm-10">
-												<select name="projectStoryId" id="projectStoryId" class='form-control' >
-													
-												</select>
-												<span class="help-block">输入与该问题相关的Story标题，帮助成员们快速重现该场景</span>
-											</div>
-										</div>
+									<form id="storyUpdateForm" name ="storyUpdateForm" method="POST" class='form-horizontal form-validate'>
 										
-										<div class="form-actions">
-											<input type="button" class="btn btn-primary" onclick="addQuestion()" value = "创建问题"></button>
-											<input type="button" class="btn btn-primary" value = "取消" onclick="location.href='homepage.html'" ></button>
+										<div class="form-group">
+											<label for="textfield" class="control-label col-sm-2">选择日期</label>
+											<div class="col-sm-10">
+												<input type="text" name="selectDay" id="selectDay" class="form-control datepick" >	
+											</div>
 										</div>
 									</form>
 								</div>
+								<div id = "wordAnalyseImg">
+								</div>
+								<div class="modal fade" id="previewDialog" tabindex="-1" role="dialog"  >
+								    <div class="modal-dialog">
+								        <div class="modal-content" style="width:850px">
+								            <div class="modal-header">
+								                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								                <h4 class="modal-title" id="qrCodeTitle">预览</h4>
+								            </div>
+								            <div class="modal-body" style="text-align: center;">
+												<!-- <div id="preview" style="text-align: -webkit-center;"></div> -->
+												<!-- <embed id="preview" name="preview" src="" type="application/pdf" width="800" height="700" top="0" border="0" toolbar="true" _version="65539" _extentx="20108" _extenty="10866" _stockprops="0">
+							 --><!-- 	             <iframe :src="http://10.0.0.5/PDF.js/web/viewer.html?file=PDF地址" width="100%" height="99%"></iframe>
+							 -->	            <iframe id="myIframe" frameborder="0" align="center" width="800" height="700" ></iframe>
+							 
+							 				</div>
+								             <!-- <div class="modal-body" >
+								            	
+								            </div> -->
+								            <div class="modal-footer">
+								            	<input class="btn btn-default" data-dismiss="modal" type="button" value="关闭">
+								            </div>
+								        </div><!-- /.modal-content -->
+								    </div><!-- /.modal -->
+							</div>
 							</div>
 						</div>
 					</div>

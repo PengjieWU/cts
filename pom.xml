@@ -67,7 +67,16 @@
             <artifactId >javax.mail </artifactId >
             <version >1.5.4 </version >
         </dependency >
-
+        <dependency>
+            <groupId>com.kennycason</groupId>
+            <artifactId>kumo-core</artifactId>
+            <version>1.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kennycason</groupId>
+            <artifactId>kumo-tokenizers</artifactId>
+            <version>1.12</version>
+        </dependency>
 
     </dependencies>
 

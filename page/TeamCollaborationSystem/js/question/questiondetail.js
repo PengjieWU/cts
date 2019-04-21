@@ -26,6 +26,15 @@ $(function() {
 				document.getElementById("projectQuestionBelong").value = questionList.projectQuestionId;
 				$("#projectQuestionKeyword").html(questionList.projectQuestionKeyword);
 				$("#projectQuestionDescription").html(questionList.projectQuestionDescription);
+				if(questionList.projectStoryId.EQUAL("")){
+					var str = "相关的Story";
+					str+="&nbsp&nbsp&nbsp&nbsp&nbsp";
+					str+="<a href=\"modifiedstory.html?projectStoryId=";
+					str+=questionList.projectStoryId;
+					str+="\">";
+					str+=questionList.projectStoryName;
+					$("#projectStoryId").html(str);
+				}
 			}else{
 				alert(result.msg)
 				window.location.href= "error.html";

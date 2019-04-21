@@ -7,12 +7,16 @@ import cn.pj.cts.entity.ProjectTaskInfoEntity;
 import cn.pj.cts.model.ProjectTaskInfoModel;
 import cn.pj.cts.service.ProjectTaskInfoService;
 import cn.pj.cts.service.UserService;
+import com.sun.deploy.net.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -96,6 +100,20 @@ public class ProjectTaskInfoController {
         return new Response(projectTaskInfoService.findTaskInfoByProjectIdAndAllTeam(projectTaskInfoEntity));
     }
 
+    @GetMapping("projectTaskAnalyse.action")
+    public void   projectTaskAnalyse(@RequestParam("projectId") String projectId, @RequestParam("selectDay") String selectDay, HttpServletResponse response) throws Exception{
+        ProjectTaskInfoEntity projectTaskInfoEntity = new ProjectTaskInfoEntity();
+        projectTaskInfoEntity.setProjectId(projectId);
+        DateFormat fmt =new SimpleDateFormat("MM/dd/yyyy");
+        Date date = fmt.parse(selectDay);
+        projectTaskInfoEntity.setSelectDay(date);
+        try {
+            projectTaskInfoService.projectTaskAnalyse(projectTaskInfoEntity,response);
+        }catch (Exception e){
+
+        }
+
+    }
 
 
 

@@ -22,6 +22,8 @@ public interface ProjectQuestionRepository extends JpaRepository<ProjectQuestion
             " tpq.PROJECT_ID = CASE WHEN :#{#projectQuestionModel.projectId} IS NULL THEN tpq.PROJECT_ID ELSE :#{#projectQuestionModel.projectId} END ," +
             " tpq.PROJECT_QUESTION_KEYWORD = CASE WHEN :#{#projectQuestionModel.projectQuestionKeyword} IS NULL THEN tpq.PROJECT_QUESTION_KEYWORD ELSE :#{#projectQuestionModel.projectQuestionKeyword} END ," +
             " tpq.PROJECT_QUESTION_DESCRIPTION = CASE WHEN :#{#projectQuestionModel.projectQuestionDescription} IS NULL THEN tpq.PROJECT_QUESTION_DESCRIPTION ELSE :#{#projectQuestionModel.projectQuestionDescription} END ," +
+            " tpq.PROJECT_STORY_ID = CASE WHEN :#{#projectQuestionModel.projectStoryId} IS NULL THEN tpq.PROJECT_STORY_ID ELSE :#{#projectQuestionModel.projectStoryId} END ," +
+            " tpq.PROJECT_STORY_NAME = CASE WHEN :#{#projectQuestionModel.projectStoryName} IS NULL THEN tpq.PROJECT_STORY_NAME ELSE :#{#projectQuestionModel.projectStoryName} END ," +
             " tpq.PROJECT_QUESTION_ANSWER = CASE WHEN :#{#projectQuestionModel.projectQuestionAnswer} IS NULL THEN tpq.PROJECT_QUESTION_ANSWER ELSE :#{#projectQuestionModel.projectQuestionAnswer} END ," +
             " tpq.PROJECT_QUESTION_BELONG = CASE WHEN :#{#projectQuestionModel.projectQuestionBelong} IS NULL THEN tpq.PROJECT_QUESTION_BELONG ELSE :#{#projectQuestionModel.projectQuestionBelong} END ," +
             " tpq.PROJECT_CREATOR_NAME = CASE WHEN :#{#projectQuestionModel.projectCreatorName} IS NULL THEN tpq.PROJECT_CREATOR_NAME ELSE :#{#projectQuestionModel.projectCreatorName} END ," +

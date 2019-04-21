@@ -95,3 +95,43 @@ function jumpQuestionAdd() {
 				window.location.href = "addquestion.html?projectId="+projectId;
 }
 
+$(function() {
+	var projectId = GetQueryString("projectId");
+	
+	var routeUrl = "http://127.0.0.1:8088/teamcollaborationsystem/projectstoryinfo/findStoryInfoByProjectId.action?projectId="+projectId;
+	$.ajax({
+		type: "GET", //方法类型
+		xhrFields: {
+			withCredentials: true
+		},
+		dataType: "json", //预期服务器返回的数据类型
+		async: true,
+		//contentType: "application/json",
+		url: routeUrl, //url
+		success: function(result) {
+			console.log(result); //打印服务端返回的数据(调试用)
+			if(result.code == "0") {
+				var userList = result.data;
+				var str = "";
+				str+="<option value=\"";
+				str+="\"";
+				str+=">";
+				str+="";
+				str+="</option>";
+				$(userList).each(function(index,item){
+						str+="<option value=\"";
+						str+=item.projectStoryId+"\"";
+						str+=">";
+						str+=item.projectStoryName;
+						str+="</option>";
+						
+					});
+					document.getElementById('projectStoryId').innerHTML=str;
+			}
+		},
+		error: function() {
+			alert("网络异常！请稍后重试");
+		}
+	});
+
+});

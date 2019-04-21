@@ -1,9 +1,12 @@
 package cn.pj.cts.service;
 
+import cn.pj.cts.common.Response;
 import cn.pj.cts.entity.ProjectTaskInfoEntity;
 import cn.pj.cts.model.ProjectTaskInfoModel;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.data.domain.Example;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -36,4 +39,8 @@ public interface ProjectTaskInfoService {
     ProjectTaskInfoModel findProjectTaskInfoListByCurrentdayAndLoginUser(ProjectTaskInfoModel projectTaskInfoModel);
 
     List<ProjectTaskInfoModel> findTaskInfoByProjectIdAndAllTeam(ProjectTaskInfoEntity projectTaskInfoEntity);
+
+    void projectTaskAnalyse(ProjectTaskInfoEntity projectTaskInfoEntity,HttpServletResponse response) throws Exception;
+
+    void wordAnalyse() throws Exception;
 }

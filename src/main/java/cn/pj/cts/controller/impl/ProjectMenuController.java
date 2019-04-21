@@ -54,8 +54,8 @@ public class ProjectMenuController {
             throw new ErrorsException(ErrorCodeAndMsg.Save_Condition_Missing);
         }
         UserModel userModel = userService.findLoginUserModel(session);
-        projectMenuModel.setGrantorId(userModel.getCreator());
-        projectMenuModel.setCreator(userModel.getCreator());
+        projectMenuModel.setGrantorId(userModel.getUserId());
+        projectMenuModel.setCreator(userModel.getUserId());
         projectMenuModel = projectMenuService.addProjectMenu(projectMenuModel);
         return new Response(projectMenuModel);
     }

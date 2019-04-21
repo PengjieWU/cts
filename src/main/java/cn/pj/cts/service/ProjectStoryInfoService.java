@@ -38,4 +38,6 @@ public interface ProjectStoryInfoService {
     ProjectStoryInfoEntity addProjectStoryInfoEntity(ProjectStoryInfoEntity projectStoryInfoEntity);
 
     Response findUserByProjectStoryId(String projectStoryId);
+
+    List<ProjectStoryInfoModel> findAllStoryByStoryNameExample(ProjectStoryInfoModel projectStoryInfoModel);
 }

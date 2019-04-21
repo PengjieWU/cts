@@ -31,6 +31,11 @@ public class ProjectQuestionModel extends BaseModel {
     @Column(name = "PROJECT_QUESTION_DESCRIPTION")
     private String projectQuestionDescription;
 
+    @Column(name = "PROJECT_STORY_ID")
+    private String projectStoryId;
+
+    @Column(name = "PROJECT_STORY_NAME")
+    private String projectStoryName;
 
     @Column(name = "PROJECT_QUESTION_ANSWER")
     private  String projectQuestionAnswer;
@@ -184,5 +189,21 @@ public class ProjectQuestionModel extends BaseModel {
 
     public void setProjectId(String projectId) {
         this.projectId = projectId;
+    }
+
+    public String getProjectStoryId() {
+        return projectStoryId;
+    }
+
+    public void setProjectStoryId(String projectStoryId) {
+        this.projectStoryId = projectStoryId;
+    }
+
+    public String getProjectStoryName() {
+        return projectStoryName;
+    }
+
+    public void setProjectStoryName(String projectStoryName) {
+        this.projectStoryName = projectStoryName;
     }
 }

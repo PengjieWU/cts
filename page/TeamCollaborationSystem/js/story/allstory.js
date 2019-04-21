@@ -107,3 +107,57 @@ function jumpQuestionAdd() {
 				var projectId = GetQueryString("projectId");
 				window.location.href = "addquestion.html?projectId="+projectId;
 }
+
+
+function findAllStoryByStoryNameExample(){
+		
+		var routeUrl = "http://127.0.0.1:8088/teamcollaborationsystem/projectstoryinfo/findAllStoryByStoryNameExample.action";
+		var projectId = GetQueryString("projectId");
+		var projectStoryName = document.getElementById("projectStoryName").value;
+		var paramObj = {"projectId":projectId,"projectStoryName":projectStoryName};
+		$.ajax({
+            type: 'POST',//方法类型
+            xhrFields: {withCredentials: true},
+            dataType: "json",//预期服务器返回的数据类型
+            contentType: "application/json",
+            data:JSON.stringify(paramObj),
+            async:false,
+            url: routeUrl,//url
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.code == 0){
+                var userList = result.data;
+				var str = "";
+				$(userList).each(function(index,item){
+						str+="<tr>";
+						str+="<td>";
+						str+=item.projectStoryName;
+						str+="</td>";
+						str+="<td>";
+						str+=item.projectStoryTypeCode;
+						str+="</td>";
+						str+="<td class=\"hidden-350\">";
+						str+=item.targetUserName;
+						str+="</td>";
+						str+="<td class=\"hidden-1024\">";
+						str+=item.projectStoryProgress;
+						str+="</td>";
+						str+="<td class=\"hidden-480\">";
+						str+=item.projectStoryDurationTime;
+						str+="<a href=\"modifiedstory.html?projectStoryId=";
+						str+=item.projectStoryId;
+						str+="\"";
+						str+="target=\"_blank\" class=\"btn\" rel=\"tooltip\" title=\"View\">";
+						str+="<i class=\"fa fa-edit\"></i>";
+						str+="</a>";
+						str+="</td>";
+						str+="</tr>";
+					});
+					document.getElementById('userStoryList').innerHTML=str;
+			}
+		},
+            error : function() {
+            	window.location.href="error.html";
+            }
+        });
+    }

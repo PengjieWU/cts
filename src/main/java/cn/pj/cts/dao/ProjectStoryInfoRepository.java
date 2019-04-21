@@ -14,6 +14,9 @@ import org.springframework.stereotype.Repository;
 
 
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 /**
  * @Author:Pengjie WU
  * @Description:TODO
@@ -48,4 +51,6 @@ public interface ProjectStoryInfoRepository extends JpaRepository<ProjectStoryIn
             " tpsi.REC_VER =  tpsi.REC_VER + 1 " +
             " where tpsi.PROJECT_STORY_ID = :#{#projectStoryInfoModel.projectStoryId}",nativeQuery = true)
     int update(@Param("projectStoryInfoModel") ProjectStoryInfoModel projectStoryInfoModel);
+
+    List<ProjectStoryInfoModel> findByProjectStoryNameLike(String projectStoryName);
 }

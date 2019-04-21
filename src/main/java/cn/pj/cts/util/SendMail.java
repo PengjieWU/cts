@@ -55,7 +55,7 @@ public class SendMail {
         contentBuffer.append("。你在本次项目中担任的是");
         contentBuffer.append(role);
         contentBuffer.append("一职。<br/>点击下方链接同意并自动加入该项目组<br/>");
-        contentBuffer.append("<a href=\"http://127.0.0.1:8020/TeamCollaborationSystem/adduserjump.html?projectId=");
+        contentBuffer.append("<a href=\"http://127.0.0.1:8020/TeamCollaborationSystem/addUserJump.html?projectId=");
         contentBuffer.append(projectId);
         contentBuffer.append("&targetEmail=");
         contentBuffer.append(targetEmail);

@@ -59,5 +59,11 @@ public interface ProjectTaskInfoRepository extends JpaRepository<ProjectTaskInfo
             " AND tpti.PROJECT_ID = :projectId " +
             " AND DATE_FORMAT(tpti.CREATOR_DATETIME, '%Y%m%d') = :dateStr ",nativeQuery = true)
     List<ProjectTaskInfoModel> findTaskInfoByProjectIdAndAllTeam(@Param("projectId") String projectId,@Param("dateStr") String dateStr);
+
+    @Query(value = " select tpti.* from TCS_PROJECT_TASK_INFO tpti " +
+            " where 1 = 1 "  +
+            " AND tpti.PROJECT_ID = :projectId " +
+            " AND DATE_FORMAT(tpti.CREATOR_DATETIME, '%Y%m%d') >= :dateStr ",nativeQuery = true)
+    List<ProjectTaskInfoModel> findKeyWordTaskInfo(@Param("projectId") String projectId,@Param("dateStr") String dateStr);
 }
 

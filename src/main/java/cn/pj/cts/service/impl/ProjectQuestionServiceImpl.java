@@ -1,12 +1,15 @@
 package cn.pj.cts.service.impl;
 
 import cn.pj.cts.dao.ProjectQuestionRepository;
+import cn.pj.cts.dao.ProjectStoryInfoRepository;
 import cn.pj.cts.model.ProjectQuestionModel;
+import cn.pj.cts.model.ProjectStoryInfoModel;
 import cn.pj.cts.service.ProjectQuestionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -22,9 +25,15 @@ public class ProjectQuestionServiceImpl implements ProjectQuestionService {
 
     @Autowired
     private ProjectQuestionRepository projectQuestionRepository;
+    @Autowired
+    private ProjectStoryInfoRepository projectStoryInfoRepository;
 
     @Override
     public ProjectQuestionModel addProjectQuestion(ProjectQuestionModel projectQuestionModel) {
+        if(!StringUtils.isEmpty(projectQuestionModel.getProjectStoryId())){
+            ProjectStoryInfoModel projectStoryInfoModel = projectStoryInfoRepository.getOne(projectQuestionModel.getProjectStoryId());
+            projectQuestionModel.setProjectStoryName(projectStoryInfoModel.getProjectStoryName());
+        }
         return projectQuestionRepository.save(projectQuestionModel);
     }
 

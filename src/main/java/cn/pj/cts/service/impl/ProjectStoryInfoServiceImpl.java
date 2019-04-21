@@ -10,12 +10,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @Author:Pengjie WU
@@ -124,5 +126,14 @@ public class ProjectStoryInfoServiceImpl implements ProjectStoryInfoService {
     public Response findUserByProjectStoryId(String projectStoryId) {
         ProjectStoryInfoModel projectStoryInfoModel = this.findProjectStoryInfoById(projectStoryId);
         return userProjectController.findUserByProjectId(projectStoryInfoModel.getProjectId());
+    }
+
+    @Override
+    public List<ProjectStoryInfoModel> findAllStoryByStoryNameExample(ProjectStoryInfoModel projectStoryInfoModel) {
+        List<ProjectStoryInfoModel> projectStoryInfoModels = projectStoryInfoRepository.findByProjectStoryNameLike(projectStoryInfoModel.getProjectStoryName());
+        if(!CollectionUtils.isEmpty(projectStoryInfoModels)){
+            projectStoryInfoModels = projectStoryInfoModels.stream().filter(model -> model.getProjectId().equals(projectStoryInfoModel.getProjectId())).collect(Collectors.toList());
+        }
+        return projectStoryInfoModels;
     }
 }

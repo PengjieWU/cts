@@ -139,56 +139,25 @@
 				<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</a>
-				<div class="user">
-					<div class="dropdown">
-						<a href="#" class='dropdown-toggle' data-toggle="dropdown">吴鹏杰
-							
-						</a>
-						<ul class="dropdown-menu pull-right">
-							<li>
-								<a href="more-userprofile.html">修改个人资料</a>
-							</li>
-							<li>
-								<a href="#">退出登录</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 		
 		<div class="container-fluid" id="content">
 			<div id="left">
-				<div class="subnav">
-					<div class="subnav-title">
-						<a href="#" class='toggle-subnav'>
-							<i class="fa fa-angle-down"></i>
-							<span>基本操作</span>
-						</a>
-					</div>
-					<ul class="subnav-menu">
-						<li>
-							<a href = "updateuserinfo.html">修改个人基本信息</a>
-						</li>
-						<li>
-							<a href="createproject.html" >新建项目</a>
-						</li>
-					</ul>
-				</div>
 				
 				<div class="subnav">
 					<div class="subnav-title">
 						<a href="#" class='toggle-subnav'>
 							<i class="fa fa-angle-down"></i>
-							<span>项目维护</span>
+							<span>项目基本信息</span>
 						</a>
 					</div>
 					<ul class="subnav-menu">
 						<li>
-							<a href = "#" onclick="jumpProjectIntroduce()">项目基本信息</a>
+							<a href = "#" onclick="jumpProjectIntroduce()">项目简介</a>
 						</li>
 						<li>
-							<a href="#" onclick="jumpProjectUser()">项目组成员组成</a>
+							<a href="#" onclick="jumpProjectUser()">项目组成员</a>
 						</li>
 					</ul>
 				</div>
@@ -196,21 +165,21 @@
 					<div class="subnav-title">
 						<a href="#" class='toggle-subnav'>
 							<i class="fa fa-angle-down"></i>
-							<span>项目进度</span>
+							<span>项目TASK</span>
 						</a>
 					</div>
 					<ul class="subnav-menu">
 						<li>
-							<a href="#" onclick="jumpAllStory()">项目问题总览</a>
+							<a href="#" onclick="jumpAllStory()">项目TASK总览</a>
 						</li>
 						<li>
-							<a href="#" onclick="jumpCreateStory()">项目任务拆分</a>
+							<a href="#" onclick="jumpCreateStory()">项目TASK拆分</a>
+						</li>
+						<li>
+							<a href="#" onclick="jumpStoryAllMine()">我的TASK</a>
 						</li>
 						<li>
 							<a href="#" onclick="jumpTaskInfo()">项目进度汇报</a>
-						</li>
-						<li>
-							<a href="#" onclick="jumpStoryAllMine()">我的任务</a>
 						</li>
 					</ul>
 				</div>
@@ -223,14 +192,14 @@
 					</div>
 					<ul class="subnav-menu">
 						<li>
+							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
+						</li>
+						<li>
 							<a href="#" onclick="jumpQuestionAllProject()">项目问题汇总</a>
 						</li>
 					</ul>
-					<ul class="subnav-menu">
-						<li>
-							<a href="#" onclick="jumpQuestionAdd()">创建项目问题</a>
-						</li>
-					</ul>
+				</div>
+				<div class="subnav" id = "adminMenu">
 				</div>
 			</div>
 		
@@ -238,7 +207,7 @@
 				<div class="container-fluid">
 					<div class="page-header">
 						<div class="pull-left">
-							<h1>创建task</h1>
+							<h1>创建TASK</h1>
 						</div>
 						<div class="pull-right">
 							<ul class="minitiles">
@@ -271,7 +240,7 @@
 								<i class="fa fa-angle-right"></i>
 							</li>
 							<li>
-								<a href="components-messages.html">新建task</a>
+								<a href="components-messages.html">新建TASK</a>
 							</li>
 						</ul>
 						<div class="close-bread">
@@ -285,7 +254,7 @@
 							<div class="box">
 								<div class="box-title">
 									<h3>
-									<i class="fa fa-edit"></i>task基本信息</h3>
+									<i class="fa fa-edit"></i>TASK基本信息</h3>
 								</div>
 								<div class="box-content">
 									<form id="storyCreateForm" name ="storyCreateForm" method="POST" class='form-horizontal form-validate' enctype="multipart/form-data">
